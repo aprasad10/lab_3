@@ -1,12 +1,38 @@
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ Project 3
+ Description: Program that allows you to play two different guessing games.
+ @author Ashley Prasad (rockPaperScissor game, main)
+ @author Bernardo Fichman Lacerda (guessingGame, menu)
+ @since 03/25/2025
+ */
 public class GuessGames {
     public static void main(String[] args) {
-        guessingGame();
-        rockPaperScissor();
+        Scanner in = new Scanner(System.in);
+        boolean inMenu = true;
+        do {
+            int myMenu = menu();
+            switch (myMenu) {
+                case 1:
+                    guessingGame();
+                    break;
+                case 2:
+                    rockPaperScissor();
+                    break;
+                case 3:
+                    inMenu = false;
+                    break;
+                default:
+                    System.out.println("Option not found.");
+            }
+        } while (inMenu == true);
+        in.close();
     }
 
+    /**
+     * This method contains the game where a random number is generated and you have five guesses to get it right
+     */
     public static void guessingGame(){
 
         Scanner in = new Scanner(System.in); // instantiating a scanner object
@@ -55,12 +81,16 @@ public class GuessGames {
             }
         }
         while(playAgain.equalsIgnoreCase("Y"));
-        in.close();
     }
 
+    /**
+     * This method contains a game the user is asked if they'd like to play, then asked to throw
+     * rock, paper, or scissors to either lose, win, or tie with the random choice, then asks if
+     * the user would like to play again or they'd be sent back to the menu
+     */
     public static void rockPaperScissor() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Do you want to play? yes or no");
+        System.out.println("Do you want to play rock, paper, scissor? yes or no");
         String answer = in.next();
         while (answer.equalsIgnoreCase("yes")) {
             Random rand = new Random();
@@ -113,7 +143,22 @@ public class GuessGames {
             }
         }
         if (answer.equalsIgnoreCase("no")) {
-            in.close();
         }
+    }
+
+    /**
+     * This is the menu method that asks for the user's choice in the options of games or exit.
+     * @return the integer of the user's choice, redirecting them to the desired path
+     */
+    public static int menu(){
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Welcome to our Guessing Games program!");
+        System.out.println("\nMenu:");
+        System.out.println("1) Guess the number");
+        System.out.println("2) Rock Paper Scissors");
+        System.out.println("3) Exit");
+        System.out.println("\nWhat do you want to play?");
+        return in.nextInt();
     }
 }
