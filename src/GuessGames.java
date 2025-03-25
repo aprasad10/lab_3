@@ -161,4 +161,5 @@ public class GuessGames {
         System.out.println("\nWhat do you want to play?");
         return in.nextInt();
     }
+    
 }
