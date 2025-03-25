@@ -1,12 +1,48 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ Project 3
+ Description: Program that allows you to play two different guessing games.
+ @author Ashley Prasad
+ @author Bernardo Fichman Lacerda
+ @since 03/25/2025
+ */
 public class GuessGames {
     public static void main(String[] args) {
-        guessingGame();
-        rockPaperScissor();
-    }
+        Scanner in = new Scanner(System.in);
 
+        while(true) {
+            int myMenu = menu();
+
+            if(myMenu==1){
+
+                guessingGame();
+
+            }
+            else{
+                if(myMenu==2){
+
+                    rockPaperScissor();
+                }
+                else{
+                    if(myMenu==3){
+
+                        in.close();
+
+                        break;
+                    }
+                    else{
+                        System.out.println("Option not found.");
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * This method contains the game where a random number is generated and you have five guesses to get it right
+     */
     public static void guessingGame(){
 
         Scanner in = new Scanner(System.in); // instantiating a scanner object
@@ -55,7 +91,6 @@ public class GuessGames {
             }
         }
         while(playAgain.equalsIgnoreCase("Y"));
-        in.close();
     }
 
     public static void rockPaperScissor() {
@@ -113,7 +148,23 @@ public class GuessGames {
             }
         }
         if (answer.equalsIgnoreCase("no")) {
-            in.close();
         }
     }
+
+    /**
+     * This method shows the user which games they can play.
+     * @return number equivalent to the option the user chose
+     */
+    public static int menu(){
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Welcome to our Guessing Games program!");
+        System.out.println("\nMenu:");
+        System.out.println("1) Guess the number");
+        System.out.println("2) Rock Paper Scissors");
+        System.out.println("3) Exit");
+        System.out.println("\nWhat do you want to play?");
+        return in.nextInt();
+    }
+    
 }
